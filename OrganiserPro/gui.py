@@ -599,94 +599,11 @@ class OrganiserProGUI:
         else:
             formatted_msg = f"[{timestamp}] ℹ️ {message}\n"
 
-            messagebox.showerror(
-                "Permission Denied",
-                f"You don't have permission to read from this folder:\n{folder}\n\n"
-                f"Please check that:\n"
-                f"• You have read access to this location\n"
-                f"• The folder is not protected by system permissions\n"
-                f"• You're not trying to organize system directories"
-            )
-            return False
-
-        # Check if folder has any files
-        has_files = any(os.path.isfile(os.path.join(folder, item)) for item in os.listdir(folder))
-        if not has_files:
-            result = messagebox.askquestion(
-                "Empty Folder",
-                f"The selected folder appears to be empty or contains no files:\n{folder}\n\n"
-                f"Do you want to continue anyway?",
-                icon='warning'
-            )
-            if result != 'yes':
-                return False
-
-        # Check for write permissions if not in preview mode
-        if not self.preview_mode.get() and not os.access(folder, os.W_OK):
-            messagebox.showerror(
-                "Permission Denied",
-                f"You don't have permission to modify files in this folder:\n{folder}\n\n"
-                f"For file organization operations, you need write access.\n\n"
-                f"You can still use Preview mode to see what would happen."
-            )
-            return False
-
-        # Enhanced safety checks
-        try:
-            # Check read permissions
-            if not os.access(folder, os.R_OK):
-                messagebox.showerror(
-                    "Permission Denied",
-                    f"You don't have permission to read from this folder:\n{folder}\n\n"
-                    f"Please check that:\n"
-                    f"• You have read access to this location\n"
-                    f"• The folder is not protected by system permissions\n"
-                    f"• You're not trying to organize system directories"
-                )
-                return False
-
-            # Check if folder has any files
-            has_files = any(os.path.isfile(os.path.join(folder, item)) for item in os.listdir(folder))
-            if not has_files:
-                result = messagebox.askquestion(
-                    "Empty Folder",
-                    f"The selected folder appears to be empty or contains no files:\n{folder}\n\n"
-                    f"Do you want to continue anyway?",
-                    icon='warning'
-                )
-                if result != 'yes':
-                    return False
-
-            # Warn about potentially dangerous locations
-            dangerous_paths = ['/bin', '/sbin', '/usr/bin', '/usr/sbin', '/etc', '/boot', '/sys', '/proc']
-            if any(folder.startswith(path) for path in dangerous_paths):
-                result = messagebox.askyesno(
-                    "Warning: System Directory",
-                    f"You're about to organize a system directory:\n{folder}\n\n"
-                    f"This could potentially damage your system.\n\n"
-                    f"Are you absolutely sure you want to continue?",
-                    icon='warning'
-                )
-                if not result:
-                    return False
-
-        except PermissionError:
-            messagebox.showerror(
-                "Access Error",
-                f"Cannot access the selected folder:\n{folder}\n\n"
-                f"This might be due to insufficient permissions or the folder being in use."
-            )
-            return False
-        except Exception as e:
-            messagebox.showerror(
-                "Validation Error",
-                f"An unexpected error occurred while validating the folder:\n{folder}\n\n"
-                f"Error details: {str(e)}\n\n"
-                f"Please try selecting a different folder or restart the application."
-            )
-            return False
-
-        return True
+        # Insert the message
+        self.results_text.insert(tk.END, formatted_msg)
+        self.results_text.see(tk.END)
+        self.results_text.config(state=tk.DISABLED)
+        self.root.update_idletasks()
 
     def preview_operation(self):
         """Preview the selected operation without making changes."""
