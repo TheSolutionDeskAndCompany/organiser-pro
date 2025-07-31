@@ -73,10 +73,10 @@ class OrganiserProGUI:
         self.root = tk.Tk()
         self.root.title("OrganiserPro - Linux Edition")
 
-        # Set window size and position - more reasonable sizing
-        window_width = 700
+        # Set window size and position - optimized for content
+        window_width = 550
         window_height = 550
-        min_width = 600
+        min_width = 500
         min_height = 450
 
         # Get screen dimensions
