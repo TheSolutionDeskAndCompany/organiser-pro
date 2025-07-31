@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+  OrganiserPro:
+    build:
+      context: .
+      target: runtime
+    volumes:
+      - .:/app
+      - OrganiserPro-data:/data
+    working_dir: /app
+    environment:
+      - PYTHONUNBUFFERED=1
+    entrypoint: ["OrganiserPro"]
+    command: ["--help"]
+
+  dev:
+    build:
+      context: .
+      target: builder
+    volumes:
+      - .:/app
+      - OrganiserPro-data:/data
+    working_dir: /app
+    environment:
+      - PYTHONUNBUFFERED=1
+    entrypoint: ["bash"]
+    tty: true
+    stdin_open: true
+
+  test:
+    build:
+      context: .
+      target: builder
+    volumes:
+      - .:/app
+    working_dir: /app
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: ["pytest", "-v", "--cov=OrganiserPro", "--cov-report=term-missing"]
+
+  lint:
+    build:
+      context: .
+      target: builder
+    volumes:
+      - .:/app
+    working_dir: /app
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: ["bash", "-c", "black --check OrganiserPro tests && flake8 OrganiserPro tests && isort --check-only OrganiserPro tests"]
+
+  typecheck:
+    build:
+      context: .
+      target: builder
+    volumes:
+      - .:/app
+    working_dir: /app
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: ["mypy", "--strict", "--ignore-missing-imports", "OrganiserPro"]
+
+  docs:
+    build:
+      context: .
+      target: builder
+    volumes:
+      - .:/app
+    working_dir: /app
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: ["sphinx-build", "-b", "html", "docs", "docs/_build/html"]
+    ports:
+      - "8000:8000"
+
+volumes:
+  OrganiserPro-data:

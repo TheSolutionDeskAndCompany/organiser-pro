@@ -1,0 +1,74 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "organiserpro"
+version = "1.0.0"
+description = "A powerful Linux desktop application for sorting, deduplicating, and managing files"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "The Solution Desk", email = "contact@thesolutiondesk.com"}
+]
+keywords = ["file", "organizer", "sort", "duplicate", "cleanup", "linux", "gui"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Desktop Environment :: File Managers",
+    "Topic :: System :: Filesystems",
+    "Topic :: Utilities",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "click>=8.0.0",
+    "rich>=10.0.0",
+    "pillow>=8.0.0",
+    "python-dateutil>=2.8.0",
+    "tkinterdnd2>=0.3.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0.0",
+    "pytest-cov>=2.10.0",
+    "black>=21.0.0",
+    "flake8>=3.8.0",
+    "mypy>=0.800",
+    "pre-commit>=2.10.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/the-solution-desk/OrganiserPro"
+Repository = "https://github.com/the-solution-desk/OrganiserPro"
+Issues = "https://github.com/the-solution-desk/OrganiserPro/issues"
+Documentation = "https://github.com/the-solution-desk/OrganiserPro#readme"
+
+[project.scripts]
+organiserpro-gui = "OrganiserPro.gui:main"
+
+[tool.setuptools.packages.find]
+include = ["OrganiserPro*"]
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = ["E203", "W503"]
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true

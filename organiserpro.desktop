@@ -1,0 +1,18 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=OrganiserPro
+GenericName=File Organizer
+Comment=Organize your files with ease - Linux Edition
+Exec=organiserpro-gui
+Icon=organiserpro
+Terminal=false
+StartupNotify=true
+Categories=Utility;FileManager;System;
+Keywords=file;organizer;sort;duplicate;cleanup;
+MimeType=inode/directory;
+Actions=organize-folder;
+
+[Desktop Action organize-folder]
+Name=Organize Folder
+Exec=organiserpro-gui %f
