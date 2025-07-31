@@ -7,7 +7,7 @@
 [![GUI Only](https://img.shields.io/badge/interface-GUI%20Only-green.svg)](https://github.com/TheSolutionDeskAndCompany/organiser-pro)
 
 <div align="center">
-  <img src="screenshots/organiserpro-improved-layout.png" alt="Screenshot of OrganiserPro main window" width="550">
+  <img src="screenshots/organiserpro-improved-layout.png" alt="OrganiserPro - Modern Linux File Organization Tool" width="580">
 </div>
 
 ## What is OrganiserPro?
@@ -33,7 +33,9 @@ Easy for beginners, powerful for experts.
 
 ## 📸 Screenshots
 
-![OrganiserPro in action: sorting files](screenshots/organiserpro-improved-layout.png)
+<div align="center">
+  <img src="screenshots/organiserpro-improved-layout.png" alt="OrganiserPro in action: sorting files" width="580">
+</div>
 
 ## 🛠️ Troubleshooting
 

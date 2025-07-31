@@ -74,10 +74,10 @@ class OrganiserProGUI:
         self.root.title("OrganiserPro - Linux Edition")
 
         # Set window size and position - perfect fit for all content
-        window_width = 520
-        window_height = 630
-        min_width = 500
-        min_height = 600
+        window_width = 580
+        window_height = 780
+        min_width = 560
+        min_height = 760
 
         # Get screen dimensions
         screen_width = self.root.winfo_screenwidth()
@@ -249,32 +249,12 @@ class OrganiserProGUI:
                            indicatorcolor=COLORS['turquoise'])
 
     def setup_ui(self):
-        """Set up the main user interface with compact scrollable layout."""
-        # Create main canvas and scrollbar for scrolling functionality
-        canvas = tk.Canvas(self.root, bg=COLORS['background'], highlightthickness=0)
-        scrollbar = ttk.Scrollbar(self.root, orient="vertical", command=canvas.yview)
-        self.scrollable_frame = ttk.Frame(canvas, style='Dark.TFrame')
-
-        # Configure scrolling
-        self.scrollable_frame.bind(
-            "<Configure>",
-            lambda e: canvas.configure(scrollregion=canvas.bbox("all"))
-        )
-
-        canvas.create_window((0, 0), window=self.scrollable_frame, anchor="nw")
-        canvas.configure(yscrollcommand=scrollbar.set)
-
-        # Pack canvas and scrollbar
-        canvas.pack(side="left", fill="both", expand=True)
-        scrollbar.pack(side="right", fill="y")
-
-        # Main container with reduced padding for compactness
-        main_frame = ttk.Frame(self.scrollable_frame, padding="20", style='Dark.TFrame')
-        main_frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
-
+        """Set up the main user interface with fixed layout that fits perfectly."""
+        # Main container with padding
+        main_frame = ttk.Frame(self.root, padding="20", style='Dark.TFrame')
+        main_frame.pack(fill="both", expand=True)
+        
         # Configure grid weights for responsive design
-        self.scrollable_frame.columnconfigure(0, weight=1)
-        self.scrollable_frame.rowconfigure(0, weight=1)
         main_frame.columnconfigure(0, weight=1)
 
         # Header section with compact styling
@@ -492,7 +472,7 @@ class OrganiserProGUI:
 
         self.results_text = scrolledtext.ScrolledText(
             results_frame,
-            height=10,
+            height=6,
             wrap=tk.WORD,
             state=tk.DISABLED,
             bg=COLORS['background'],
