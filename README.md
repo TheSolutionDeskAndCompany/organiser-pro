@@ -61,11 +61,6 @@ OrganiserPro is a **modern, neon-themed Linux desktop app** for sorting, dedupli
 * Runs on all major Linux desktops (GNOME, KDE, XFCE)
 * Clean, cyberpunk/neon UI — no ugly default widgets
 
-## 📸 Screenshots
-
-<div align="center">
-  <img src="screenshots/organiserpro-improved-layout.png" alt="OrganiserPro in action: sorting files" width="580">
-</div>
 
 ## 🔍 Perfect For
 
@@ -122,6 +117,4 @@ Want to help? [Open an issue](https://github.com/TheSolutionDeskAndCompany/organ
 * Undo/restore operations
 * Windows and Mac support (future)
 
----
 
-> **Always keep the README focused on what works right now!**
