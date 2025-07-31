@@ -6,7 +6,7 @@
 [![Linux Only](https://img.shields.io/badge/platform-Linux-orange.svg)](https://www.linux.org/)
 [![GUI Only](https://img.shields.io/badge/interface-GUI%20Only-green.svg)](https://github.com/TheSolutionDeskAndCompany/organiser-pro)
 
-![Screenshot of OrganiserPro main window](screenshots/organiserpro-main-window.png)
+![Screenshot of OrganiserPro main window](screenshots/organiserpro-full-window.png)
 
 ## What is OrganiserPro?
 
@@ -31,7 +31,7 @@ Easy for beginners, powerful for experts.
 
 ## 📸 Screenshots
 
-![OrganiserPro in action: sorting files](screenshots/organiserpro-main-window.png)
+![OrganiserPro in action: sorting files](screenshots/organiserpro-full-window.png)
 
 ## 🛠️ Troubleshooting
 
