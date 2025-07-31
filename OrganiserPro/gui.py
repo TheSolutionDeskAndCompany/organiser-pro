@@ -585,6 +585,38 @@ class OrganiserProGUI:
         self.results_text.config(state=tk.DISABLED)
         self.root.update_idletasks()
 
+    def validate_inputs(self):
+        """Validate user inputs before executing operations."""
+        folder = self.selected_folder.get().strip()
+        
+        if not folder:
+            messagebox.showerror(
+                "No Folder Selected",
+                "Please select a folder to organize first.\n\n"
+                "You can either:\n"
+                "• Click the Browse button to select a folder\n"
+                "• Type the folder path directly in the text field"
+            )
+            return False
+            
+        if not os.path.exists(folder):
+            messagebox.showerror(
+                "Folder Not Found",
+                f"The selected folder does not exist:\n{folder}\n\n"
+                "Please select a valid folder."
+            )
+            return False
+            
+        if not os.path.isdir(folder):
+            messagebox.showerror(
+                "Invalid Selection",
+                f"The selected path is not a folder:\n{folder}\n\n"
+                "Please select a valid folder."
+            )
+            return False
+            
+        return True
+
     def preview_operation(self):
         """Preview the selected operation without making changes."""
         if not self.validate_inputs():
