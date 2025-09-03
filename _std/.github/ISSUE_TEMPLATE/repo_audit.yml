@@ -1,0 +1,31 @@
+name: 🔎 Repo Audit
+description: Review this repository against standards
+labels: ["audit","good first issue"]
+body:
+  - type: checkboxes
+    id: basics
+    attributes:
+      label: Basics
+      options:
+        - label: Name & description clear
+        - label: Topics set
+        - label: LICENSE present
+  - type: checkboxes
+    id: docs
+    attributes:
+      label: Docs
+      options:
+        - label: README template
+        - label: CONTRIBUTING
+        - label: CODE_OF_CONDUCT
+        - label: SECURITY
+        - label: SUPPORT
+  - type: checkboxes
+    id: auto
+    attributes:
+      label: Automation
+      options:
+        - label: CI green
+        - label: Release-Please enabled
+        - label: Dependabot enabled
+        - label: CodeQL enabled
