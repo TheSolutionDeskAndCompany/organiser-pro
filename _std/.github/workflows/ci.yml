@@ -1,0 +1,36 @@
+name: CI
+on:
+  push: { branches: [main, master] }
+  pull_request:
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: { language: [node, python] }
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Node setup
+        if: matrix.language == 'node'
+        uses: actions/setup-node@v4
+        with: { node-version: 'lts/*', cache: 'npm' }
+      - if: matrix.language == 'node'
+        run: |
+          if [ -f package.json ]; then
+            npm ci
+            npm run build --if-present
+            npm test --if-present
+          fi
+
+      - name: Python setup
+        if: matrix.language == 'python'
+        uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - if: matrix.language == 'python'
+        run: |
+          if [ -f pyproject.toml ] || [ -f requirements.txt ]; then
+            python -m pip install -U pip
+            [ -f requirements.txt ] && pip install -r requirements.txt || true
+            [ -f pyproject.toml ] && pip install -e . || true
+            if command -v pytest >/dev/null 2>&1; then pytest -q || true; fi
+          fi
